@@ -3,19 +3,42 @@ import './App.css'
 
 class App extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       pokemonId: 0,
       pokemonName: ''
     }
   }
 
-  componentDidMount() {
-    console.log('Component mounted')
+  async componentDidMount() {
+    console.log('Component mounted');
+
+    let randomPokemonId = Math.floor(Math.random() * 1025) + 1;
+    console.log("Random Pokemon ID to get is: " + randomPokemonId);
+
+    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemonId}`);
+    let data = await response.json();
+
+    console.log(data);
+
+    this.setState((previousState) => {
+      return {
+        // Guarentee that previous state is all kept
+        ...previousState,
+        // pokemonId: previousState.pokemonId,
+        // And then overwrite the specific bits that we want to update
+        pokemonName: data.name,
+        pokemonId: data.id
+      }
+    })
   }
 
   componentDidUpdate() {
     console.log(this.state);
+  }
+
+  componentWillUnmount() {
+    console.log('API stuff is all done, goodbye!');
   }
 
   render() {
