@@ -6,6 +6,7 @@ import { PokemonSearcher } from './components/PokemonSearcher.jsx.jsx'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import { BaseLayout } from './pages/layout/BaseLayout.jsx'
 import { UserJwtProvider } from './contexts/UserJwtProvider.jsx'
+import { UserJwtContext } from './contexts/UserJwtContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

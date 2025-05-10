@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../App.css'
 import { useParams } from 'react-router-dom';
+import { UserJwtContext } from '../contexts/UserJwtContext';
 
 
 export function PokemonSearcher() {
+
+  let userJwt = useContext(UserJwtContext);
 
   let { searchTerm } = useParams();
 
@@ -40,6 +43,16 @@ export function PokemonSearcher() {
   // useEffect(() => {
   //   console.log("Use effect says hello world! on update of PokemonName")
   // }, [pokemonName]);
+
+  useEffect(() => {
+    
+    if (!userJwt && pokemonSearchTerm.length > 0) {
+      setPokemonSearchTerm('');
+      
+    } else{
+      // user is logged in and is allowed to search
+    }
+  }, [pokemonSearchTerm]);
 
   
 
