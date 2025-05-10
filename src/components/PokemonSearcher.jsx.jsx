@@ -15,6 +15,8 @@ export function PokemonSearcher() {
   useEffect(() => {
     console.log("Use effect says hello world!")
 
+    getRandomPokemon();
+
     // Return inside useEffect is equivalent to componentWillUnmount
     return (() => {
       console.log("Component is unmounting now.")
