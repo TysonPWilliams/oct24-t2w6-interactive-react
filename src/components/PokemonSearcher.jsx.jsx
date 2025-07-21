@@ -6,7 +6,7 @@ import { UserJwtContext } from '../contexts/UserJwtContext';
 
 export function PokemonSearcher() {
 
-  let userJwt = useContext(UserJwtContext);
+  let [userJwt] = useContext(UserJwtContext);
 
   let { searchTerm } = useParams();
 
